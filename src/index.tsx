@@ -2,14 +2,14 @@ import React, { FC } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-const Square: FC<{ num: number }> = () => (
+const Square: FC = () => (
   <button type="button" className="square">
     {/* TODO */}
   </button>
 );
 
 const Board: FC = () => {
-  const renderSquare = (i: number) => <Square num={i} />;
+  const renderSquare = () => <Square />;
 
   const status = 'Next player: X';
 
@@ -17,19 +17,19 @@ const Board: FC = () => {
     <div>
       <div className="status">{status}</div>
       <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
+        {renderSquare()}
+        {renderSquare()}
+        {renderSquare()}
       </div>
       <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
+        {renderSquare()}
+        {renderSquare()}
+        {renderSquare()}
       </div>
       <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
+        {renderSquare()}
+        {renderSquare()}
+        {renderSquare()}
       </div>
     </div>
   );
@@ -47,9 +47,6 @@ const Game: FC = () => (
   </div>
 );
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Game />
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
+// ========================================
+
+ReactDOM.render(<Game />, document.getElementById('root'));
