@@ -2,12 +2,6 @@ import React, { FC } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-// class Square extends React.Component {
-//   render() {
-//     return <button className="square">{/* TODO */}</button>;
-//   }
-// }
-
 const Square: FC<{ num: number }> = () => (
   <button type="button" className="square">
     {/* TODO */}
