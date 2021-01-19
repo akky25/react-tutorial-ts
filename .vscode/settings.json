@@ -1,0 +1,38 @@
+{
+  // 基本設定
+  "editor.tabSize": 2,
+  "editor.formatOnSave": false,
+
+  // Prettier設定
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[graphql]": {
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+
+  // ESLint設定
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true // stylelin設定
+  },
+  "eslint.packageManager": "yarn",
+
+  // stylelin設定
+  "css.validate": false,
+  "less.validate":false,
+  "scss.validate":false,
+}
