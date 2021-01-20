@@ -11,7 +11,7 @@ const Square: FC<squareProps> = (props) => {
   const { value, onClick } = props;
 
   return (
-    <button type="button" className="square" onClick={() => onClick()}>
+    <button type="button" className="square" onClick={onClick}>
       {value}
     </button>
   );
@@ -19,18 +19,20 @@ const Square: FC<squareProps> = (props) => {
 
 const Board: FC = () => {
   const [squares, setSquares] = useState<string[]>(Array(9).fill(null));
+  const [xIsNext, setXIsNext] = useState(true);
 
   const handleClick = (i: number) => {
     const s = squares.slice();
-    s[i] = 'X';
+    s[i] = xIsNext ? 'X' : 'O';
     setSquares(s);
+    setXIsNext((preXIsNext) => !preXIsNext);
   };
 
   const renderSquare = (i: number) => (
     <Square value={squares[i]} onClick={() => handleClick(i)} />
   );
 
-  const status = 'Next player: X';
+  const status = `Next player: ${xIsNext ? 'X' : 'O'}`;
 
   return (
     <div>
