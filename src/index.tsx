@@ -7,6 +7,28 @@ type squareProps = {
   onClick: () => void;
 };
 
+const calculateWinner = (squares: string[]) => {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  for (let i = 0; i < lines.length; i += 1) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+
+  return null;
+};
+
 const Square: FC<squareProps> = (props) => {
   const { value, onClick } = props;
 
@@ -23,6 +45,9 @@ const Board: FC = () => {
 
   const handleClick = (i: number) => {
     const s = squares.slice();
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
     s[i] = xIsNext ? 'X' : 'O';
     setSquares(s);
     setXIsNext((preXIsNext) => !preXIsNext);
@@ -32,7 +57,13 @@ const Board: FC = () => {
     <Square value={squares[i]} onClick={() => handleClick(i)} />
   );
 
-  const status = `Next player: ${xIsNext ? 'X' : 'O'}`;
+  const wienner = calculateWinner(squares);
+  let status;
+  if (wienner) {
+    status = `Winner: ${wienner}`;
+  } else {
+    status = `Next player: ${xIsNext ? 'X' : 'O'}`;
+  }
 
   return (
     <div>
