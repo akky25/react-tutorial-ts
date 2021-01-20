@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-const Square: FC<{ value: number }> = (props) => {
-  const { value } = props;
+const Square: FC<{ value: number }> = () => {
+  const [value, setValue] = useState<string | null>(null);
 
   return (
-    <button type="button" className="square">
+    <button type="button" className="square" onClick={() => setValue('X')}>
       {value}
     </button>
   );
