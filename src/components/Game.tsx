@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import Board from './Board';
 import Moves from './Moves';
-import UseGame from './use-game';
-import calculateWinner from './calculateWinner';
+import useGame from '../hooks/use-game';
+import calculateWinner from '../utils/calculateWinner';
 
 const Game: FC = () => {
-  const [history, stepNumber, xIsNext, handleClick, jumpTo] = UseGame();
+  const [history, stepNumber, xIsNext, handleClick, jumpTo] = useGame();
 
   const winner = calculateWinner(history[stepNumber].squares);
   let status;

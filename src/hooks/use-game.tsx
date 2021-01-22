@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { elm, History } from './type';
-import calculateWinner from './calculateWinner';
+import { elm, History } from '../type/type';
+import calculateWinner from '../utils/calculateWinner';
 
 type ReturnType = [
   History[],
@@ -10,7 +10,7 @@ type ReturnType = [
   (step: number) => void,
 ];
 
-const UseGame = (): ReturnType => {
+const useGame = (): ReturnType => {
   const [history, setHistory] = useState<History[]>([
     { squares: Array<elm>(9).fill(null), key: 0 },
   ]);
@@ -18,16 +18,18 @@ const UseGame = (): ReturnType => {
   const [stepNumber, setStepNumber] = useState(0);
 
   const handleClick = (i: number) => {
-    const h = history.slice(0, stepNumber + 1);
-    const c = h[h.length - 1];
-    const s = c.squares.slice();
-    if (calculateWinner(s) || s[i]) {
+    const newHistory = history.slice(0, stepNumber + 1);
+    const newCurrent = newHistory[newHistory.length - 1];
+    const newSquares = newCurrent.squares.slice();
+    if (calculateWinner(newSquares) || newSquares[i]) {
       return;
     }
-    s[i] = xIsNext ? 'X' : 'O';
-    setHistory(h.concat([{ squares: s, key: c.key + 1 }]));
+    newSquares[i] = xIsNext ? 'X' : 'O';
+    setHistory(
+      newHistory.concat([{ squares: newSquares, key: newCurrent.key + 1 }]),
+    );
     setXIsNext(!xIsNext);
-    setStepNumber(h.length);
+    setStepNumber(newHistory.length);
   };
 
   const jumpTo = (step: number) => {
@@ -38,4 +40,4 @@ const UseGame = (): ReturnType => {
   return [history, stepNumber, xIsNext, handleClick, jumpTo];
 };
 
-export default UseGame;
+export default useGame;

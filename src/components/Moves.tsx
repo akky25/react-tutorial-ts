@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { History } from './type';
+import { History } from '../type/type';
 
 type movesProps = {
   history: History[];

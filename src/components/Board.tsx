@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Square from './square';
-import { elm } from './type';
+import { elm } from '../type/type';
 
 type boardProps = {
   squares: Array<elm>;
