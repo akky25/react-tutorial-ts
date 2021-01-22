@@ -2,12 +2,14 @@ import React, { FC, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+type elm = 'X' | 'O' | null;
+
 type squareProps = {
-  value: string;
+  value: elm;
   onClick: () => void;
 };
 
-const calculateWinner = (squares: string[]) => {
+const calculateWinner = (squares: Array<elm>) => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -40,7 +42,7 @@ const Square: FC<squareProps> = (props) => {
 };
 
 type boardProps = {
-  squares: string[];
+  squares: Array<elm>;
   onClick: (i: number) => void;
 };
 
@@ -72,9 +74,14 @@ const Board: FC<boardProps> = (props) => {
   );
 };
 
+type History = {
+  squares: elm[];
+  key: number;
+};
+
 const Game: FC = () => {
-  const [history, setHistory] = useState([
-    { squares: Array(9).fill(null), key: 0 },
+  const [history, setHistory] = useState<History[]>([
+    { squares: Array<elm>(9).fill(null), key: 0 },
   ]);
   const [xIsNext, setXIsNext] = useState(true);
   const [stepNumber, setStepNumber] = useState(0);
